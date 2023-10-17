@@ -1,7 +1,6 @@
 import {Dispatch} from 'redux'
 import {authAPI} from '../api/todolists-api'
 import {setIsLoggedInAC} from '../features/Login/auth-reducer'
-import { register } from './../serviceWorker';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const initialState: InitialStateType = {
@@ -28,6 +27,7 @@ const slice = createSlice({
 
 export const appReducer = slice.reducer
 
+// export const appActions = slice.actions
 // export const appReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
 //     switch (action.type) {
 //         case 'APP/SET-STATUS':
@@ -59,7 +59,7 @@ export const setAppInitializedAC = slice.actions.setAppInitializedAC
 export const initializeAppTC = () => (dispatch: Dispatch) => {
     authAPI.me().then(res => {
         if (res.data.resultCode === 0) {
-            dispatch(setIsLoggedInAC({value:true}));
+            dispatch(setIsLoggedInAC({isLoggedIn:true}));
         } else {
 
         }

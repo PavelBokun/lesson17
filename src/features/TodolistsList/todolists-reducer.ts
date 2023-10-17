@@ -3,7 +3,7 @@ import {Dispatch} from 'redux'
 import {RequestStatusType, SetAppErrorActionType, setAppStatusAC, SetAppStatusActionType} from '../../app/app-reducer'
 import {handleServerNetworkError} from '../../utils/error-utils'
 import { AppThunk } from '../../app/store';
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: Array<TodolistDomainType> = []
@@ -20,11 +20,21 @@ const slice = createSlice({
         //   return state.filter(tl=>tl.id===action.payload.id)
         },
         addTodolistAC(state,action:PayloadAction<{todolist: TodolistType}>){
+                // const a = current(state)
+                // debugger
             state.unshift({...action.payload.todolist,filter:'all',entityStatus:"idle"})
         },
         changeTodolistTitleAC(state,action:PayloadAction<{id: string, title: string}>){
             const index = state.findIndex(tl=>tl.id===action.payload.id);
-            state[index].title=action.payload.title  
+            if (index){
+                state[index].title=action.payload.title 
+            }
+            
+
+                // const todo = state.find(tl=>tl.id===action.payload.id)
+                // if(todo){
+                //     todo.title=action.payload.title
+                // }
              },
         changeTodolistFilterAC(state,action:PayloadAction<{id: string, filter: FilterValuesType}>){
             const index = state.findIndex(tl=>tl.id===action.payload.id);
@@ -89,9 +99,10 @@ export const addTodolistTC = (title: string) => {
 }
 export const changeTodolistTitleTC = (id: string, title: string) => {
     return (dispatch: Dispatch) => {
-        todolistsAPI.updateTodolist(id, title)
+               todolistsAPI.updateTodolist(id, title)
             .then((res) => {
                 dispatch(changeTodolistTitleAC({id:id, title}))
+               
             })
     }
 }
