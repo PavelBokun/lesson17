@@ -38,9 +38,12 @@ const slice = createSlice({
     isLoggedIn: false,
   },
   reducers: {
-    setIsLoggedInAC(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
+    setIsLoggedIn: (state, action:PayloadAction<{ isLoggedIn: boolean }>) => {
       state.isLoggedIn = action.payload.isLoggedIn;
-    },
+          },
+    // setIsLoggedInAC(state, action: PayloadAction<{ isLoggedIn: boolean }>) {
+    //   state.isLoggedIn = action.payload.isLoggedIn;
+    // },
   },
   extraReducers: (builder) => {
     builder.addCase(loginTC.fulfilled, (state, action) => {
@@ -50,7 +53,8 @@ const slice = createSlice({
 });
 export const authReducer = slice.reducer;
 
-export const setIsLoggedInAC = slice.actions.setIsLoggedInAC;
+export const setIsLoggedInAC = slice.actions.setIsLoggedIn;
+
 //  (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
 //     switch (action.type) {
 //         case 'login/SET-IS-LOGGED-IN':
