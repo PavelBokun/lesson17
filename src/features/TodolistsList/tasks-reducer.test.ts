@@ -1,4 +1,4 @@
-import { addTaskAC, fetchTasksTC,  tasksReducer, TasksStateType, updateTaskAC } from './tasks-reducer'
+import { addTaskAC, fetchTasksTC,  tasksReducer, TasksStateType, updateTaskAC,removeTaskTC } from './tasks-reducer'
 
 import {addTodolistAC, removeTodolistAC, setTodolistsAC} from './todolists-reducer'
 import {TaskPriorities, TaskStatuses} from '../../api/todolists-api'
@@ -25,15 +25,17 @@ beforeEach(() => {
     };
 });
 
-// test('correct task should be deleted from correct array', () => {
-//     const action = removeTaskAC({ taskId:"2", todolistId: "todolistId2"});
+test('correct task should be deleted from correct array', () => {
+    const  param ={ taskId:"2", todolistId: "todolistId2"}
+    debugger
+    const action = removeTaskTC.fulfilled(param,"requestId",param);
 
-//     const endState = tasksReducer(startState, action)
+    const endState = tasksReducer(startState, action)
 
-//     expect(endState["todolistId1"].length).toBe(3);
-//     expect(endState["todolistId2"].length).toBe(2);
-//     expect(endState["todolistId2"].every(t => t.id != "2")).toBeTruthy();
-// });
+    expect(endState["todolistId1"].length).toBe(3);
+    expect(endState["todolistId2"].length).toBe(2);
+    expect(endState["todolistId2"].every(t => t.id != "2")).toBeTruthy();
+});
 test('correct task should be added to correct array', () => {
     //const action = addTaskAC("juce", "todolistId2");                // Можно Так
     // const action = addTaskAC({task:{      
