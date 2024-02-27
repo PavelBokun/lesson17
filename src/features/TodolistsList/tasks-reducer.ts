@@ -45,7 +45,7 @@ export const removeTaskTC = createAsyncThunk(
 //     dispatch(setAppStatusAC({ status: "loading" }));
 //     todolistsAPI.deleteTask(todolistId, taskId).then((res) => {
 //       const action = removeTaskAC({ taskId, todolistId });
-//       dispatch(action);
+//       dispatch(action);А
 //       dispatch(setAppStatusAC({ status: "succeeded" }));
 //     });
 //   };

@@ -17,9 +17,9 @@ import {
 } from "@mui/material";
 
 type FormValueType = {
-  email: string,
-  password:string,
-  rememberMe: boolean,
+  email: string;
+  password: string;
+  rememberMe: boolean;
 };
 
 export const Login = () => {
@@ -49,7 +49,7 @@ export const Login = () => {
     },
     onSubmit: async (values, formikHelpers: FormikHelpers<FormValueType>) => {
       const res = await dispatch(loginTC(values));
-      formikHelpers.setFieldError('email', 'fakeError')
+      formikHelpers.setFieldError("email", "fakeError");
     },
   });
 
