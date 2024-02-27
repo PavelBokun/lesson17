@@ -29,7 +29,8 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
         : <span onDoubleClick={activateEditMode}>{props.value}</span>
         <div>
             <p>commit1</p>
-            
+            <p>commit2</p>
+            <p>commit3</p>
         </div>
     </>
        
