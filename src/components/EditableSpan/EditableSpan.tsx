@@ -22,7 +22,17 @@ export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
         setTitle(e.currentTarget.value)
     }
 
-    return editMode
+    return(
+    <>
+     editMode
         ?    <TextField value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
         : <span onDoubleClick={activateEditMode}>{props.value}</span>
+        <div>
+            <p>commit1</p>
+            
+        </div>
+    </>
+       
+    )
+     
 });
